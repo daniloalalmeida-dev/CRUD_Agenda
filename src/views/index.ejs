@@ -1,0 +1,38 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+    
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        
+        <div class="col-lg-8 my-3">
+            <h1 class="text-center">Agenda</h1>
+
+            <%- include('includes/messages') %>     
+            
+            <% if(contactList.length > 0) { %>
+            <p class="text-center lead">Seus contatos estão abaixo:</p>
+            <div class="responsive-table">
+                <table class="table my-3">
+                    <% contactList.forEach(contact => { %>
+                    <tr>
+                        <td><%= contact.nome %></td>
+                        <td><%= contact.sobrenome%></td>
+                        <td><%= contact.telefone%></td>
+                        <td><%= contact.email%></td>
+                        <td><a href="/contact/index/<%= contact._id %>">Editar</a></td>
+                        <td><a class="text-danger" href="/contact/delete/<%= contact._id %>">Deletar</a></td>
+                    </tr>
+                    <% }); %>
+                </table>
+            </div>
+            <% } else { %>
+                <p class="text-center lead">Não existem contatos na sua agenda.</p>
+                <% }; %>
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+<%- include('includes/footer') %>
